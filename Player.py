@@ -1,14 +1,45 @@
+import random
+
 class Player:
-    def __init__(self, name):
-        self._name = name
-        self._score = 0
-        self._move = ''
+    def __init__(self):
+        self._name
+        self._choice
 
-    def makeMove(self):
-        raise NotImplementedError("Subclasses should implement this!")
+    def getChoice(self):
+        return self._choice
 
-    def getMove(self):
-        return print('This would get the move of a player')
+    def setChoice(self, chosen):
+        self._choice = chosen
 
-    def resetScore(self):
-        return print('This would reset the score for the specified player; may become part of the Game class.')
+class Person(Player):
+    def __init__(self):
+        self._name = 'Human'
+        self._choice = None
+
+    def getChoice(self):
+        return self._choice
+
+    def setChoice(self, chosen):
+        self._choice = chosen
+
+class Computer(Player):
+    def __init__(self):
+        self._name = 'PC'
+        self._choice = None
+        #self._generator = random()
+    
+    def generateChoice(self):
+        #ranNum = 2
+        ranNum = random.randint(1,3)
+        return ranNum
+
+    def setChoice(self, chosen):
+        if chosen == 1:
+            self._choice = 'Paper'
+        elif chosen == 2:
+            self._choice = 'Scissor'
+        else:
+            self._choice = 'Rock'
+
+    def getChoice(self):
+        return self._choice
